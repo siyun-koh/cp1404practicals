@@ -11,5 +11,5 @@ HEX_COLOUR_CODES = {"AliceBlue": "#f0f8ff",
 
 colour_name = input("Enter a colour name: ")
 while colour_name != "":
-    print("The code for \"{}\" is: {}".format(colour_name, HEX_COLOUR_CODES.get(colour_name)))
+    print("The code for colour name \"{}\" is: {}".format(colour_name, HEX_COLOUR_CODES.get(colour_name)))
     colour_name = input("Enter a colour name: ")
