@@ -20,3 +20,6 @@ while state != "":
     else:
         print("Invalid short state")
     state = input("Enter short state: ").upper()
+
+for key, value in STATE_NAMES.items():
+    print(key, "is", value)
