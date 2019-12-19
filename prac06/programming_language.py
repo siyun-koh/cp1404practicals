@@ -8,7 +8,7 @@ class ProgrammingLanguage:
         self.year = year
 
     def __str__(self):
-        """returns string representative of object"""
+        """returns string representative of object details"""
         return "{}, {} Typing, Reflection = {}, First appeared in {}".format(self.name, self.typing, self.reflection,
                                                                              self.year)
 
