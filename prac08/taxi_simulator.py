@@ -1,4 +1,3 @@
-from prac08.car import Car
 from prac08.taxi import Taxi
 from prac08.silver_service_taxi import SilverServiceTaxi
 
@@ -13,6 +12,7 @@ MENU = "q)uit, c)hoose taxi, d)rive"
 
 def main():
     total_fare = 0
+    current_taxi = None
     taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2), SilverServiceTaxi("Hummer", 200, 4)]
 
     print("Let's drive!")
@@ -22,16 +22,23 @@ def main():
         if menu_choice == "c":
             print("Taxis available: ")
             display_taxis(taxis)
-            # no error-checking
             taxi_choice = int(input("Choose a taxi: "))
-            current_taxi = taxis[taxi_choice]
+            if taxi_choice > len(taxis)-1:
+                """Error-checking for choosing taxi number not in list"""
+                print("Invalid taxi choice!")
+            else:
+                current_taxi = taxis[taxi_choice]
         elif menu_choice == "d":
-            current_taxi.start_fare()
-            distance_to_drive = float(input("How far?: "))
-            current_taxi.drive(distance_to_drive)
-            trip_cost = current_taxi.get_fare()
-            print("Your {} trip cost you ${:.2f}".format(current_taxi.name, trip_cost))
-            total_fare += trip_cost
+            if current_taxi is None:
+                """error check for if no taxi is selected"""
+                print("No taxi selected!")
+            else:
+                current_taxi.start_fare()
+                distance_to_drive = float(input("How far?: "))
+                current_taxi.drive(distance_to_drive)
+                trip_cost = current_taxi.get_fare()
+                print("Your {} trip cost you ${:.2f}".format(current_taxi.name, trip_cost))
+                total_fare += trip_cost
         else:
             print("Invalid option.")
         print("Bill to date: ${:.2f}".format(total_fare))
